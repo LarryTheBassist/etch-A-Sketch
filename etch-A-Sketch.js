@@ -1,6 +1,7 @@
 //create container for sketchpad
 const gridContainer = document.createElement('div');
 gridContainer.classList.add('container');
+let num = 16;
 
 
 //catchall grid render
@@ -19,7 +20,6 @@ function addDivs(num, container) {
     for (let i = 0; i < divNum; i++) {
         let newDiv = document.createElement('div');
         newDiv.setAttribute("id", `${i}`);
-        //add event listener to each div
         addMouseover(newDiv);
         container.appendChild(newDiv);
     };
@@ -32,5 +32,25 @@ function addMouseover(div) {
     })
 }
 
-setUpGrid(16, gridContainer);
+setUpGrid(num, gridContainer);
+
+//add button to clear grid
+const clearGridButton = document.createElement("button");
+clearGridButton.textContent = "Clear Grid";
+clearGridButton.addEventListener("click", clearGrid);
+
+function clearGrid() {
+    setUpGrid(num, gridContainer);
+}
+
+const changeResolutionBtn = document.createElement("button");
+changeResolutionBtn.textContent = "Change Resolution";
+changeResolutionBtn.addEventListener("click", ()=> {
+    clearGrid();
+    let num = prompt("How many squares per side do you want?");
+    setUpGrid(num, gridContainer);
+})
+
+document.body.appendChild(clearGridButton);
+document.body.appendChild(changeResolutionBtn);
 document.body.appendChild(gridContainer);
