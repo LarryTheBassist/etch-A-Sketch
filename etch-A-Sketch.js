@@ -3,7 +3,7 @@ const gridContainer = document.createElement('div');
 gridContainer.classList.add('container');
 
 
-
+//catchall grid render
 function setUpGrid(num, container){
     setUpContainer(num, container);
     addDivs(num, container);
@@ -19,10 +19,18 @@ function addDivs(num, container) {
     for (let i = 0; i < divNum; i++) {
         let newDiv = document.createElement('div');
         newDiv.setAttribute("id", `${i}`);
+        //add event listener to each div
+        addMouseover(newDiv);
         container.appendChild(newDiv);
     };
 };
 
+//add event listener to each div
+function addMouseover(div) {
+    div.addEventListener("mouseover", function() {
+        this.setAttribute("style", "background-color: black");
+    })
+}
 
 setUpGrid(16, gridContainer);
 document.body.appendChild(gridContainer);
